@@ -1,0 +1,86 @@
+.carousel-item {
+  height: 821px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item img {
+    height: 100%;
+    width: 100%;
+}
+
+.ground{
+    background-color: #240935;
+}
+
+.mess{
+    background-color: #212529;
+    font-size: 24px;
+    color: #d3d3d3;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-down: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.batn{
+    margin-top: 10px;
+}
+
+.rev_menu{
+  color: #d3d3d3;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: 10%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.footer{
+  background-color: #212529;
+}
+
+.rating-result {
+	width: 265px;
+    margin 0 auto;
+}
+.rating-result span {
+	padding: 0;
+	font-size: 32px;
+	margin: 0 3px;
+	line-height: 1;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+.rating-result > span:before {
+	content: '★';
+}
+.rating-result > span.active {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+
+.films_card:hover {
+    cursor: pointer;
+    opacity: 1;
+    transform: scale(1.01);
+
+}
+
+.films_card {
+  opacity: 0.9;
+}
+
+.rev {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
