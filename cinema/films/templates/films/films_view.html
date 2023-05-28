@@ -9,14 +9,14 @@
                     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                  <li><a href="/films/mainpage" class="nav-link px-2 text-white">Home</a></li>
-                  <li><a href="/films/films_view" class="nav-link px-2 text-secondary">Films</a></li>
-                    <li><a href="/films/reviews" class="nav-link px-2 text-white">Reviews</a></li>
-                    <li><a href="/films/add_review" class="nav-link px-2 text-white">Add review</a></li>
+                  <li><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+                  <li><a href="/films/films_view" class="nav-link px-2 text-secondary">Фильмы</a></li>
+                    <li><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+                    <li><a href="/films/add_review" class="nav-link px-2 text-white">Оставить отзыв</a></li>
                     {% if request.user.is_superuser %}
-                      <li><a href="/films/add" class="nav-link px-2 text-white">Add</a></li>
-                      <li><a href="/films/delete" class="nav-link px-2 text-white">Delete</a></li>
-                      <li><a href="/films/list" class="nav-link px-2 text-white">List</a></li>
+                      <li><a href="/films/add" class="nav-link px-2 text-white">Добавить фильм</a></li>
+                      <li><a href="/films/delete" class="nav-link px-2 text-white">Удалить фильм</a></li>
+                      <li><a href="/films/list" class="nav-link px-2 text-white">Список</a></li>
                     {% endif %}
                 </ul>
 

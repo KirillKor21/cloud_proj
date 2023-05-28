@@ -1,5 +1,56 @@
-{% extends "films/base.html" %}
-{% if request.user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'films/custom.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>{% block title %}Default title{% endblock title %}</title>
+</head>
+<body style="background-color: #240935; color: white">
+{% block header%}
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                  <li><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+                  <li><a href="/films/films_view" class="nav-link px-2 text-white">Фильмы</a></li>
+                    <li><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+                    <li><a href="/films/add_review" class="nav-link px-2 text-white">Оставить отзыв</a></li>
+                    {% if request.user.is_superuser %}
+                      <li><a href="/films/add" class="nav-link px-2 text-secondary">Добавить фильм</a></li>
+                      <li><a href="/films/delete" class="nav-link px-2 text-white">Удалить фильм</a></li>
+                      <li><a href="/films/list" class="nav-link px-2 text-white">Список</a></li>
+                    {% endif %}
+                </ul>
+
+                <div class="dropdown" style="margin-right: 15px ">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                      Filter
+                  </button>
+                    <form method="post">
+                        {% csrf_token %}
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><button class="dropdown-item" type="submit" name="sort" value="stars">By rating</button></li>
+                        <li><button class="dropdown-item" type="submit" name="sort" value="studio">By studio</button></li>
+                        <li><button class="dropdown-item" type="submit" name="sort" value="name">By name</button></li>
+                      </ul>
+                    </form>
+                </div>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="post">
+                    {% csrf_token %}
+                  <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search" name="search", id="search">
+                </form>
+            </div>
+        </div>
+    </header>
+{% endblock header%}
+{% if request.user.is_superuser %}
 {% block content %}
 <div class="container">
     <h1>Добавить новый фильм</h1>
@@ -24,8 +75,8 @@
                 <input class="form-control" type="number" is="room_number" name="room_number">
                 </div>
                 <div>
-                <label for="poster">Poster</label>
-                <input class="form-control" type="text" is="poster" name="poster">
+                    <label for="poster">Poster</label>
+                    <p><input class=form-control" is="poster" type="file" name="poster"></p>
                 </div>
                 <div>
                 <label for="stars">Stars</label>
@@ -37,9 +88,6 @@
     </div>
 </div>
 {% endblock %}
-{% else %}
-<h1>You don't have enough privileges</h1>
-{% endif %}
 {%block footer%}
   <div class="footer" style="position: absolute;bottom: 0;width: 100%; background-color: #1E0F28">
     <footer class="py-4 my-0">
@@ -52,3 +100,8 @@
     </footer>
   </div>
 {%endblock footer%}
+
+{% else %}
+    <h1>You don't have enough privileges</h1>
+{% endif %}
+</body>

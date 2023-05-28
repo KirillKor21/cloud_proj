@@ -62,7 +62,7 @@ def add_review(request):
             return redirect(reverse('films:reviews'))
         else:
             all_films = models.Film.objects.all()
-            film_id = request.GET.get("films",1)
+            film_id = request.GET.get("films", 1)
             context = context = {'film_id': int(film_id), "all_films": all_films}
             return render(request, 'films/add_review.html', context=context)
 

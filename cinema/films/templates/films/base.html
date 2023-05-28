@@ -19,10 +19,21 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="/films/mainpage" class="nav-link px-2 text-white">Home</a></li>
-              <li><a href="/films/films_view" class="nav-link px-2 text-white">Films</a></li>
-              <li><a href="/films/reviews" class="nav-link px-2 text-white">Reviews</a></li>
-              <li><a href="/films/add_review" class="nav-link px-2 text-secondary">Add review</a></li>
+              <li><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+              <li><a href="/films/films_view" class="nav-link px-2 text-white">Фильмы</a></li>
+              <li><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+              <li><a href="/films/add_review" class="nav-link px-2 text-secondary">Оставить отзыв</a></li>
+            </ul>
+              <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+              {% if request.user.is_authenticated %}
+                <li><a href="#" class="nav-link px-2 text-white">{{ user }}</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">|</a></li>
+                <li><a href="/accounts/logout/" class="nav-link px-2 text-white">Log out</a></li>
+              {% else %}
+                <li><a href="/accounts/login/" class="nav-link px-2 text-white">Login</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">|</a></li>
+                <li><a href="/films/signup/" class="nav-link px-2 text-white">Register</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>

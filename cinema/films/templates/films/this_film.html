@@ -1,5 +1,6 @@
 {% extends "films/base.html" %}
-{% block title %}{% endblock title %}
+{% if request.user.is_superuser %}
+{% block title %}Список фильмов{% endblock title %}
 {% load static %}
 {% block header%}
     <header class="p-3 bg-dark text-white">
@@ -9,11 +10,30 @@
                     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                  <li><a href="/films/mainpage" class="nav-link px-2 text-white">Home</a></li>
-                  <li><a href="/films/films_view" class="nav-link px-2 text-secondary">Films</a></li>
-                  <li><a href="/films/reviews" class="nav-link px-2 text-white">Reviews</a></li>
-                  <li><a href="/films/add_review" class="nav-link px-2 text-white">Add review</a></li>
+                  <li><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+                  <li><a href="/films/films_view" class="nav-link px-2 text-secondary">Фильмы</a></li>
+                    <li><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+                    <li><a href="/films/add_review" class="nav-link px-2 text-white">Оставить отзыв</a></li>
+                    {% if request.user.is_superuser %}
+                      <li><a href="/films/add" class="nav-link px-2 text-white">Добавить фильм</a></li>
+                      <li><a href="/films/delete" class="nav-link px-2 text-white">Удалить фильм</a></li>
+                      <li><a href="/films/list" class="nav-link px-2 text-white">Список</a></li>
+                    {% endif %}
                 </ul>
+
+                <div class="dropdown" style="margin-right: 15px ">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                      Filter
+                  </button>
+                    <form method="post">
+                        {% csrf_token %}
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><button class="dropdown-item" type="submit" name="sort" value="stars">By rating</button></li>
+                        <li><button class="dropdown-item" type="submit" name="sort" value="studio">By studio</button></li>
+                        <li><button class="dropdown-item" type="submit" name="sort" value="name">By name</button></li>
+                      </ul>
+                    </form>
+                </div>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="post">
                     {% csrf_token %}
@@ -22,7 +42,7 @@
             </div>
         </div>
     </header>
-{%endblock header%}
+{% endblock header%}
 {%block content%}
   <div class="container" style="padding-top:20px; padding-bottom:40px">
     <div class="row">
