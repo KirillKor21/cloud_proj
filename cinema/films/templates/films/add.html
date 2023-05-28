@@ -1,46 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add film</title>
-</head>
-<body>
-{% if request.user.is_superuser %}
+{% extends "films/base.html" %}
+{% if request.user.is_authenticated %}
 {% block content %}
 <div class="container">
-    <h1>Add a new film to the database</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <div>
-        <label for="name">Name</label>
-        <input class="form-control" type="text" is="name" name="name">
+    <h1>Добавить новый фильм</h1>
+    <div class="row">
+        <div class="col-4">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div>
+                <label for="name">Name</label>
+                <input class="form-control" type="text" is="name" name="name">
+                </div>
+                <div>
+                <label for="studio">Studio</label>
+                <input class="form-control" type="text" is="studio" name="studio">
+                </div>
+                <div>
+                <label for="time">Time</label>
+                <input class="form-control" type="time" is="time" name="time">
+                </div>
+                <div>
+                <label for="room_number">Room number</label>
+                <input class="form-control" type="number" is="room_number" name="room_number">
+                </div>
+                <div>
+                <label for="poster">Poster</label>
+                <input class="form-control" type="text" is="poster" name="poster">
+                </div>
+                <div>
+                <label for="stars">Stars</label>
+                <input class="form-control" type="number" is="stars" name="stars">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Добавить" style="margin-top: 20px;">
+            </form>
         </div>
-        <div>
-        <label for="studio">Studio</label>
-        <input class="form-control" type="text" is="studio" name="studio">
-        </div>
-        <div>
-        <label for="time">Time</label>
-        <input class="form-control" type="time" is="time" name="time">
-        </div>
-        <div>
-        <label for="room_number">Room number</label>
-        <input class="form-control" type="number" is="room_number" name="room_number">
-        </div>
-        <div>
-        <label for="poster">Poster</label>
-        <input class="form-control" type="text" is="poster" name="poster">
-        </div>
-        <div>
-        <label for="stars">Stars</label>
-        <input class="form-control" type="number" is="stars" name="stars">
-        </div>
-        <input class="btn btn-primary" type="submit">
-    </form>
+    </div>
 </div>
 {% endblock %}
 {% else %}
 <h1>You don't have enough privileges</h1>
 {% endif %}
-</body>
-</html>
+{%block footer%}
+  <div class="footer" style="position: absolute;bottom: 0;width: 100%; background-color: #1E0F28">
+    <footer class="py-4 my-0">
+      <ul class="nav justify-content-center border-none pb-0 mb-0">
+        <li class="nav-item"><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+        <li class="nav-item"><a href="/films/films_view" class="nav-link px-2 text-white">Фильмы</a></li>
+        <li class="nav-item"><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+      </ul>
+      <p class="text-center text-white">© 2023 Company, Inc</p>
+    </footer>
+  </div>
+{%endblock footer%}

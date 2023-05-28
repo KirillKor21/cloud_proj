@@ -1,73 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-      <link rel="stylesheet" href="{% static 'films/custom.css' %}">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <title>Add review</title>
-</head>
-<body class="ground">
+{% extends "films/base.html" %}
+{% load static %}
 {% if request.user.is_authenticated %}
-
-<header class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/films/mainpage" class="nav-link px-2 text-white">Home</a></li>
-          <li><a href="/films/films_view" class="nav-link px-2 text-white">Films</a></li>
-          <li><a href="/films/reviews" class="nav-link px-2 text-white">Reviews</a></li>
-          <li><a href="/films/add_review" class="nav-link px-2 text-secondary">Add review</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
+{% block title %}Добавить отзыв{% endblock title %}
 {% block content %}
-<div class="rev_menu">
-    <h1>Add a new review</h1>
+<div class="rev_menu" style="top: 41%;  width: 300px;">
+    <h1>Оставьте отзыв</h1>
     <form action="" method="post">
         {% csrf_token %}
         <div>
-        <label for="name">Your name</label>
-        <input class="form-control" type="text" is="name" name="name">
+        <input class="form-control" type="hidden" is="name" name="name", value="{{ request.user.username }}">
         </div>
         <div>
-        <label for="film">Film name</label>
-        <input class="form-control" type="text" is="film" name="film">
+        </div>
+        <div class="btn-group" style="white-space: nowrap; width: 250px; resize: none;">
+          <button type="button" class="btn btn-secondary" style="padding-right:200px; resize: none;" ;>
+              {% for Film in all_films %}
+                  {%if Film.id == film_id %}
+                    {{Film.name}}
+                    {{break}}
+                  {%endif%}
+              {%endfor%}
+          </button>
+          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="width: 50px;">
+            <span class="visually-hidden">Переключатель выпадающего списка</span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% for Film in all_films %}
+              <li><a class="dropdown-item" href="?films={{Film.id}}">{{Film.name}}</a></li>
+              {% endfor %}
+          </ul>
+            <input class="form-control" type="hidden" is="id" name="id" value="{{film_id}}">
         </div>
         <div>
-        <label for="msg">Your review</label>
-        <input  class="form-control" type="text" is="msg" name="msg">
+            <label for="msg">Отзыв</label>
+            <input  class="form-control" type="text" is="msg" name="msg">
         </div>
         <div>
-        <label for="stars">Number of stars</label>
+        <label for="stars">Оценка</label>
         <input  class="form-control" type="number" is="stars" name="stars">
         </div>
         <div class="batn">
         <input class="btn btn-primary" type="submit">
         </div>
-
     </form>
 </div>
 {% endblock %}
-
-<div class="footer rev">
-  <footer class="py-4 my-0">
-    <ul class="nav justify-content-center border-none pb-0 mb-0">
-      <li class="nav-item"><a href="/films/mainpage" class="nav-link px-2 text-white">Home</a></li>
-      <li class="nav-item"><a href="/films/films_view" class="nav-link px-2 text-white">Films</a></li>
-      <li class="nav-item"><a href="/films/reviews" class="nav-link px-2 text-white">Reviews</a></li>
-    </ul>
-    <p class="text-center text-white">© 2022 Company, Inc</p>
-  </footer>
-</div>
+{%block footer%}
+  <div class="footer" style="position: absolute;bottom: 0;width: 100%; background-color: #1E0F28">
+    <footer class="py-4 my-0">
+      <ul class="nav justify-content-center border-none pb-0 mb-0">
+        <li class="nav-item"><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+        <li class="nav-item"><a href="/films/films_view" class="nav-link px-2 text-white">Фильмы</a></li>
+        <li class="nav-item"><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+      </ul>
+      <p class="text-center text-white">© 2023 Company, Inc</p>
+    </footer>
+  </div>
+{%endblock footer%}
 {% else %}
 <h1 style="color: white" >You haven't authorized</h1>
 {% endif %}
-</body>
-</html>

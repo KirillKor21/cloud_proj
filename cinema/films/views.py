@@ -50,14 +50,21 @@ def reviews(request):
 
 def add_review(request):
         if request.POST:
+            id = int(request.POST['id'])
+            all_films = models.Film.objects.all()
+            for Film in all_films:
+                if Film.id == id:
+                    film = Film.name
             name = request.POST['name']
-            film = request.POST['film']
             msg = request.POST['msg']
             stars = request.POST['stars']
             models.Review.objects.create(name=name, film=film, msg=msg, stars=stars)
             return redirect(reverse('films:reviews'))
         else:
-            return render(request, 'films/add_review.html')
+            all_films = models.Film.objects.all()
+            film_id = request.GET.get("films",1)
+            context = context = {'film_id': int(film_id), "all_films": all_films}
+            return render(request, 'films/add_review.html', context=context)
 
 
 def add(request):
