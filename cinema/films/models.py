@@ -6,7 +6,8 @@ class Film(models.Model):
     studio = models.CharField(max_length=50)
     time = models.TimeField()
     room_number = models.IntegerField()
-    poster = models.CharField(max_length=50)
+    poster = models.FileField(upload_to='films/static/films')
+    poster_url = models.CharField(max_length=50)
     stars = models.IntegerField()
 
     def __str__(self):
@@ -20,3 +21,4 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review is {self.name} by {self.film} is: {self.msg}, stars:"
+

@@ -1,15 +1,18 @@
+import os.path
+
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
-
 from . import models
 
 
 def films_view(request):
     if request.POST:
+
         try:
             sorts = request.POST["sort"]
+            print("sorts === ", sorts)
             all_films = models.Film.objects.all().order_by(sorts)
             context = {'all_films': all_films}
             return render(request, 'films/films_view.html', context=context)
@@ -20,13 +23,16 @@ def films_view(request):
                 try:
                     name_films = request.POST["search"]
                 except:
-                    print("Can't find it")
+                    print("Can't find it in search")
             try:
+                print("name_film ===", name_films)
                 Film = models.Film.objects.get(name=name_films)
+                print ("Film===", Film )
                 context = {'Film': Film}
                 return render(request, "films/this_film.html", context=context)
             except:
                 print("Can't find it")
+
     all_films = models.Film.objects.all()
     print(all_films)
     context = {'all_films': all_films}
@@ -68,28 +74,38 @@ def add_review(request):
 
 
 def add(request):
+    UPLOAD_FOLDER = './static/films'
+    ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
     if request.POST:
-        name = request.POST['name']
-        studio = request.POST['studio']
-        time = request.POST['time']
-        room_number = request.POST['room_number']
-        poster = request.POST['poster']
-        stars = request.POST['stars']
-        models.Film.objects.create(name=name, studio=studio, time=time, room_number=room_number, poster=poster, stars=stars)
+
+        name = request.POST.get('name')
+        studio = request.POST.get('studio')
+        time = request.POST.get('time')
+        room_number = request.POST.get('room_number')
+        stars = request.POST.get('stars')
+        poster = request.FILES.get("poster")
+        poster_url = 'films/' + str(poster)
+        th_film = models.Film(
+            name=name, studio=studio, time=time, room_number=room_number, poster=poster, stars=stars, poster_url=poster_url
+        )
+        th_film.save()
         return redirect(reverse('films:list'))
     else:
         return render(request, 'films/add.html')
 
 def delete(request):
     if request.POST:
-        pk=request.POST['pk']
+        id=request.POST['id']
         try:
-            models.Film.objects.get(pk=pk).delete()
+            models.Film.objects.get(pk=id).delete()
             return redirect(reverse('films:list'))
         except:
             print('pk not found')
     else:
-        return render(request, 'films/delete.html')
+        all_films = models.Film.objects.all()
+        film_id = request.GET.get("films", 1)
+        context = context = {'film_id': int(film_id), "all_films": all_films}
+        return render(request, 'films/delete.html', context=context)
 
 def list(request):
     all_films = models.Film.objects.all()
@@ -101,3 +117,4 @@ class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+

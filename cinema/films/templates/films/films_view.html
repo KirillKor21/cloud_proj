@@ -52,7 +52,7 @@
                 <div class="col films_card" onclick = 'document.getElementById("form_POST_for_{{ Film.name }}").submit();'>
                     <input type="hidden" for="form_POST_for_{{ Film.name }}" name="Name_film" value="{{ Film.name }}">
                     <div class="card shadow-sm" style="border: none">
-                        <img src="{% static Film.poster %}" class="bd-placeholder-img card-img-top" width="100%" height="550">
+                        <img src= "{% static Film.poster_url %}" class="bd-placeholder-img card-img-top" width="100%" height="550">
                         <div class="card-body" style="background-color: #464451; text-align: left; color:white; font-size: 18px" >
                             <output style="font-size: 24px";>{{ Film.name }}</output>
                             <div class="rating-result">

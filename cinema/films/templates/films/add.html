@@ -56,7 +56,7 @@
     <h1>Добавить новый фильм</h1>
     <div class="row">
         <div class="col-4">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
                 <label for="name">Name</label>
@@ -75,12 +75,12 @@
                 <input class="form-control" type="number" is="room_number" name="room_number">
                 </div>
                 <div>
-                    <label for="poster">Poster</label>
-                    <p><input class=form-control" is="poster" type="file" name="poster"></p>
-                </div>
-                <div>
                 <label for="stars">Stars</label>
                 <input class="form-control" type="number" is="stars" name="stars">
+                </div>
+                <div>
+                    <label for="poster">Poster</label>
+                    <p> <input class=form-control" is="poster" type="file" name="poster"></p>
                 </div>
                 <input class="btn btn-primary" type="submit" value="Добавить" style="margin-top: 20px;">
             </form>

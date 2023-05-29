@@ -58,11 +58,28 @@
             <h1>Удалить фильм</h1>
             <form action="" method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="pk">ID фильма:</label>
-                    <input class="form-control" type="text" id="pk" name="pk">
+                <div class="btn-group" style="white-space: nowrap; width: 250px; resize: none;">
+                  <button type="button" class="btn btn-secondary" style="padding-right:200px; resize: none;" ;>
+                      {% for Film in all_films %}
+                          {%if Film.id == film_id %}
+                            {{Film.name}}
+                            {{break}}
+                          {%endif%}
+                      {%endfor%}
+                  </button>
+                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="width: 50px;">
+                    <span class="visually-hidden">Переключатель выпадающего списка</span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      {% for Film in all_films %}
+                      <li><a class="dropdown-item" href="?films={{Film.id}}">{{Film.name}}</a></li>
+                      {% endfor %}
+                  </ul>
+                    <input class="form-control" type="hidden" is="id" name="id" value="{{film_id}}">
                 </div>
-                <input class="btn btn-primary" type="submit">
+                <div class="batn">
+                <input class="btn btn-danger" type="submit" value="Удалить">
+                </div>
             </form>
         </div>
     </div>
