@@ -8,6 +8,8 @@ class Film(models.Model):
     room_number = models.IntegerField()
     poster = models.FileField(upload_to='films/static/films')
     poster_url = models.CharField(max_length=50)
+    description = models.CharField(max_length=512)
+    trailer = models.CharField(max_length=512)
     stars = models.IntegerField()
 
     def __str__(self):

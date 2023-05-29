@@ -1,5 +1,7 @@
 import os.path
 
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -83,10 +85,13 @@ def add(request):
         time = request.POST.get('time')
         room_number = request.POST.get('room_number')
         stars = request.POST.get('stars')
+        trailer = request.POST.get('trailer')
+        description = request.POST.get('description')
         poster = request.FILES.get("poster")
         poster_url = 'films/' + str(poster)
+
         th_film = models.Film(
-            name=name, studio=studio, time=time, room_number=room_number, poster=poster, stars=stars, poster_url=poster_url
+            name=name, studio=studio, time=time, room_number=room_number, poster=poster, stars=stars, poster_url=poster_url, description=description, trailer=trailer
         )
         th_film.save()
         return redirect(reverse('films:list'))
@@ -117,4 +122,3 @@ class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
-

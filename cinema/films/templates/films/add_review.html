@@ -96,5 +96,21 @@
   </div>
 {%endblock footer%}
 {% else %}
-<h1 style="color: white" >You haven't authorized</h1>
+<h1 style="margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)" >
+    You haven't authorized</h1>
+  <div class="footer" style="position: absolute;bottom: 0;width: 100%; background-color: #1E0F28">
+    <footer class="py-4 my-0">
+      <ul class="nav justify-content-center border-none pb-0 mb-0">
+        <li class="nav-item"><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
+        <li class="nav-item"><a href="/films/films_view" class="nav-link px-2 text-white">Фильмы</a></li>
+        <li class="nav-item"><a href="/films/reviews" class="nav-link px-2 text-white">Отзывы</a></li>
+      </ul>
+      <p class="text-center text-white">© 2023 Korotaev, 201-331</p>
+    </footer>
+  </div>
 {% endif %}
