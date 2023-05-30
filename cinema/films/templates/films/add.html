@@ -34,35 +34,35 @@
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
-                <label for="name">Name</label>
-                <input class="form-control" type="text" is="name" name="name">
+                <label for="name">Имя</label>
+                <input class="form-control" type="text" is="name" required name="name">
                 </div>
                 <div>
-                <label for="studio">Studio</label>
-                <input class="form-control" type="text" is="studio" name="studio">
+                <label for="studio">Студия</label>
+                <input class="form-control" type="text" is="studio" required name="studio">
                 </div>
                 <div>
-                <label for="time">Time</label>
-                <input class="form-control" type="time" is="time" name="time">
+                <label for="time">Время</label>
+                <input class="form-control" type="time" is="time" required name="time">
                 </div>
                 <div>
-                <label for="room_number">Room number</label>
-                <input class="form-control" type="number" is="room_number" name="room_number">
+                <label for="room_number">Зал</label>
+                <input class="form-control" type="number" min="1" max="3" required is="room_number" name="room_number">
                 </div>
                 <div>
-                <label for="stars">Stars</label>
-                <input class="form-control" type="number" is="stars" name="stars">
+                <label for="stars">Рейтинг</label>
+                <input class="form-control" type="number" is="stars" min="0" max="5" required is="room_number" name="stars">
                 </div>
                 <div>
-                <label for="stars">Trailer</label>
-                <input class="form-control" type="text" is="trailer" name="trailer">
+                <label for="stars">Трейлер</label>
+                <input class="form-control" type="text" is="trailer" required name="trailer">
                 </div>
                 <div>
-                <label for="description">Description</label>
-                <textarea class="form-control" type="text" is="description" rows="3" name="description"></textarea></p>
+                <label for="description">Описание</label>
+                <textarea class="form-control" type="text" is="description" rows="3" required name="description"></textarea></p>
                 </div>
                 <div class="mb-3">
-                  <label for="poster" class="form-label">Poster</label>
+                  <label for="poster" required class="form-label">Постер</label>
                   <input class="form-control" type="file" id="poster" name="poster">
                 </div>
                 <input class="btn btn-primary" type="submit" value="Добавить" style="margin-top: 10px; margin-bottom: 10px;">

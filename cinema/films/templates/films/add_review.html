@@ -71,11 +71,11 @@
         </div>
         <div>
             <label for="msg">Отзыв</label>
-            <p><textarea  class="form-control" type="text-area" is="msg" name="msg" rows="1"> </textarea></p>
+            <p><textarea required class="form-control" type="text-area" is="msg" name="msg" rows="1"> </textarea></p>
         </div>
         <div>
         <label for="stars">Оценка</label>
-        <input  class="form-control" type="number" is="stars" name="stars">
+        <input  class="form-control" min="0" max="5" required type="number" is="stars" name="stars">
         </div>
         <div class="batn">
         <input class="btn btn-primary" type="submit">
