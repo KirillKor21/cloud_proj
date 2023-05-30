@@ -42,33 +42,34 @@
             <iframe width="560" height="315" src={{ Film.trailer }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
             <div style="display:inline-block;float: right;" >
-            <div style="display:inline-block" class="rating-result">
-              {% if Film.stars > 0%}
-                <span class="active"></span>
-              {% else %}
-              <span></span>
-              {% endif %}
-              {% if Film.stars > 1%}
-                <span class="active"></span>
-              {% else %}
-              <span></span>
-              {% endif %}
-              {% if Film.stars > 2%}
-                <span class="active"></span>
-              {% else %}
-              <span></span>
-              {% endif %}
-              {% if Film.stars > 3%}
-                <span class="active"></span>
-              {% else %}
-              <span></span>
-              {% endif %}
-              {% if Film.stars > 4%}
-                <span class="active"></span>
-              {% else %}
-              <span></span>
-              {% endif %}
-            </div>
+                <span style="color:GhostWhite; text-align:justify; font-family: Arial; font-size:20px">Рейтинг: </span>
+                <div style="display:inline-block" class="rating-result">
+                  {% if Film.stars > 0%}
+                    <span class="active"></span>
+                  {% else %}
+                  <span></span>
+                  {% endif %}
+                  {% if Film.stars > 1%}
+                    <span class="active"></span>
+                  {% else %}
+                  <span></span>
+                  {% endif %}
+                  {% if Film.stars > 2%}
+                    <span class="active"></span>
+                  {% else %}
+                  <span></span>
+                  {% endif %}
+                  {% if Film.stars > 3%}
+                    <span class="active"></span>
+                  {% else %}
+                  <span></span>
+                  {% endif %}
+                  {% if Film.stars > 4%}
+                    <span class="active"></span>
+                  {% else %}
+                  <span></span>
+                  {% endif %}
+                </div>
           </div>
         </div>
     </div>

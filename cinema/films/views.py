@@ -11,10 +11,8 @@ from . import models
 
 def films_view(request):
     if request.POST:
-
         try:
             sorts = request.POST["sort"]
-            print("sorts === ", sorts)
             all_films = models.Film.objects.all().order_by(sorts)
             context = {'all_films': all_films}
             return render(request, 'films/films_view.html', context=context)
@@ -70,7 +68,7 @@ def add_review(request):
             return redirect(reverse('films:reviews'))
         else:
             all_films = models.Film.objects.all()
-            film_id = request.GET.get("films", 1)
+            film_id = request.GET.get("films", 0)
             context = context = {'film_id': int(film_id), "all_films": all_films}
             return render(request, 'films/add_review.html', context=context)
 
@@ -108,7 +106,7 @@ def delete(request):
             print('pk not found')
     else:
         all_films = models.Film.objects.all()
-        film_id = request.GET.get("films", 1)
+        film_id = request.GET.get("films", 0)
         context = context = {'film_id': int(film_id), "all_films": all_films}
         return render(request, 'films/delete.html', context=context)
 

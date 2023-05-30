@@ -17,21 +17,6 @@
                       <li><a href="/films/list" class="nav-link px-2 text-white">Список</a></li>
                     {% endif %}
                 </ul>
-
-                <div class="dropdown" style="margin-right: 15px ">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                      Filter
-                  </button>
-                    <form method="post">
-                        {% csrf_token %}
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="submit" name="sort" value="stars">By rating</button></li>
-                        <li><button class="dropdown-item" type="submit" name="sort" value="studio">By studio</button></li>
-                        <li><button class="dropdown-item" type="submit" name="sort" value="name">By name</button></li>
-                      </ul>
-                    </form>
-                </div>
-
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="post">
                     {% csrf_token %}
                   <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search" name="search", id="search">

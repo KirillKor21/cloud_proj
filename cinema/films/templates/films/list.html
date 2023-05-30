@@ -27,20 +27,6 @@
                     {% endif %}
                 </ul>
 
-                <div class="dropdown" style="margin-right: 15px ">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                      Filter
-                  </button>
-                    <form method="post">
-                        {% csrf_token %}
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="submit" name="sort" value="stars">By rating</button></li>
-                        <li><button class="dropdown-item" type="submit" name="sort" value="studio">By studio</button></li>
-                        <li><button class="dropdown-item" type="submit" name="sort" value="name">By name</button></li>
-                      </ul>
-                    </form>
-                </div>
-
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="post">
                     {% csrf_token %}
                   <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search" name="search", id="search">
@@ -53,6 +39,7 @@
 <div class="container" style="margin-top: 20px">
     <div class="raw">
         <div class="col-8">
+            <h1>Лист фильмов</h1>
             <ul class="list-group">
                 {% for Film in all_films %}
                 <li class="list-group-item" style="margin-top:21px"> {{ Film }} <span>id = {{ Film.id }} </span> </li>

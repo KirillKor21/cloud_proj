@@ -28,20 +28,6 @@
                     {% endif %}
                 </ul>
 
-                <div class="dropdown" style="margin-right: 15px ">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                      Filter
-                  </button>
-                    <form method="post">
-                        {% csrf_token %}
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="submit" name="sort" value="stars">By rating</button></li>
-                        <li><button class="dropdown-item" type="submit" name="sort" value="studio">By studio</button></li>
-                        <li><button class="dropdown-item" type="submit" name="sort" value="name">By name</button></li>
-                      </ul>
-                    </form>
-                </div>
-
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="post">
                     {% csrf_token %}
                   <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search..." aria-label="Search" name="search", id="search">
@@ -54,39 +40,53 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-4">
-            <h1>Удалить фильм</h1>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="btn-group" style="white-space: nowrap; width: 250px; resize: none;">
-                  <button type="button" class="btn btn-secondary" style="padding-right:200px; resize: none;" ;>
-                      {% for Film in all_films %}
-                          {%if Film.id == film_id %}
-                            {{Film.name}}
-                            {{break}}
-                          {%endif%}
-                      {%endfor%}
-                  </button>
-                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="width: 50px;">
-                    <span class="visually-hidden">Переключатель выпадающего списка</span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      {% for Film in all_films %}
-                      <li><a class="dropdown-item" href="?films={{Film.id}}">{{Film.name}}</a></li>
-                      {% endfor %}
-                  </ul>
-                    <input class="form-control" type="hidden" is="id" name="id" value="{{film_id}}">
-                </div>
-                <div class="batn">
-                <input class="btn btn-danger" type="submit" value="Удалить">
-                </div>
-            </form>
+        <div class="col-4" style="margin:10px; padding:10px">
+            <div>
+                {% for Film in all_films %}
+                    {%if Film.id == film_id %}
+                        <div class="card shadow-sm" style="border: none; margin-bottom:10px">
+                          <img src="{% static Film.poster_url %}" class="bd-placeholder-img card-img-top" width="100%" height="550">
+                          <div class="card-body" style="background-color: #0B0423; text-align: left; color:white; font-size: 18px" >
+                              <output><span style="font-size: 28px">{{ Film.name }}</span></output>
+                          </div>
+                        </div>
+                        {{break}}
+                    {%endif%}
+                {%endfor%}
+            </div>
+            <div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="btn-group" style="white-space: nowrap; width: 250px; resize: none;">
+                      <button type="button" class="btn btn-secondary" style="padding-right:200px; rwidth: 270px; resize: none; max-width: 270px; min-width: 270px;" ;>
+                          {% for Film in all_films %}
+                              {%if Film.id == film_id %}
+                                {{Film.name}}
+                                {{break}}
+                              {%endif%}
+                          {%endfor%}
+                      </button>
+                      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="width: 50px;">
+                        <span class="visually-hidden">Переключатель выпадающего списка</span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          {% for Film in all_films %}
+                          <li><a class="dropdown-item" href="?films={{Film.id}}">{{Film.name}}</a></li>
+                          {% endfor %}
+                      </ul>
+                        <input class="form-control" type="hidden" is="id" name="id" value="{{film_id}}">
+                    </div>
+                    <div class="batn">
+                    <input class="btn btn-danger" type="submit" value="Удалить">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 {% endblock content %}
 {%block footer%}
-  <div class="footer" style="position: absolute;bottom: 0;width: 100%; background-color: #1E0F28">
+    <div class="footer" style="background-color: #1E0F28">
     <footer class="py-4 my-0">
       <ul class="nav justify-content-center border-none pb-0 mb-0">
         <li class="nav-item"><a href="/films/mainpage" class="nav-link px-2 text-white">Главная</a></li>
