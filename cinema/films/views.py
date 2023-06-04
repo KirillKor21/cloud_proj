@@ -96,6 +96,7 @@ def add(request):
     else:
         return render(request, 'films/add.html')
 
+
 def delete(request):
     if request.POST:
         id=request.POST['id']
@@ -110,13 +111,8 @@ def delete(request):
         context = context = {'film_id': int(film_id), "all_films": all_films}
         return render(request, 'films/delete.html', context=context)
 
+
 def list(request):
     all_films = models.Film.objects.all()
     context = {'all_films': all_films}
     return render(request, 'films/list.html', context=context)
-
-
-class SignUp(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy("login")
-    template_name = "registration/signup.html"

@@ -11,5 +11,4 @@ urlpatterns = [
     path('list/', views.list, name='list'),
     path('add/', views.add, name='add'),
     path('delete/', views.delete, name='delete'),
-    path("signup/", views.SignUp.as_view(), name="signup")
 ]

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+      <style class="cp-pen-styles"></style>
+      <link rel="stylesheet" href="{% static 'registred/custom.css' %}">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Регистрация</title>
+</head>
+<body>
+
+<div class="login">
+    <h1>Регистрация</h1>
+    <form method="post">
+      {% csrf_token %}
+        <input type="text" minlength="4"  name="username" required="" placeholder="Username" id="id_username" style="margin-top: 10px">
+        <input type="password" minlength="6"  name="password" placeholder="Password" autocomplete="new-password" required="" id="password" style="margin-top: 5px">
+        <input type="password" minlength="6" name="password2" placeholder="Password_again" required="" id="password2" style="margin-top: 5px">
+        <button name="btn" type="submit" class="btn btn-primary btn-block btn-large" style="margin-top: 5px">Зарегистрироватся</button>
+        {% if error %}
+        <p style="color: red; margin-top: 5px" >{{ error }}</p>
+        {% endif %}
+    </form>
+</div>
+</body>
+</html>
+<script>
+
+</script>

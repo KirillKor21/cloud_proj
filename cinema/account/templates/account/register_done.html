@@ -6,13 +6,13 @@
       <style class="cp-pen-styles"></style>
       <link rel="stylesheet" href="{% static 'registred/custom.css' %}">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <title>Logged out!</title>
+    <title>Успешно</title>
 </head>
 <body>
 
-<div class="login" style="padding: 30px;">
-    <h1 style="color: white">Logged out!</h1>
-        <a href="/films/mainpage/" class="btn btn-primary btn-lg active" style="margin: 20px" role="button" aria-pressed="true">Главная страница</a>
+<div style="color: white; padding: 10px; margin: 10px">
+    <h1>Добро пожаловать {{ new_user.first_name }}!</h1>
+    <p>Аккаунт успешно создан, теперь вы можете <a href="{% url 'login' %}">войти</a> !</p>
 </div>
 
 </body>

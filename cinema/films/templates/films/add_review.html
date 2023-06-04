@@ -28,11 +28,11 @@
               {% if request.user.is_authenticated %}
                 <li><a href="#" class="nav-link px-2 text-white">{{ user }}</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">|</a></li>
-                <li><a href="/accounts/logout/" class="nav-link px-2 text-white">Log out</a></li>
+                <li><a href="/account/logout/" class="nav-link px-2 text-white">Log out</a></li>
               {% else %}
-                <li><a href="/accounts/login/" class="nav-link px-2 text-white">Login</a></li>
+                <li><a href="/account/login/" class="nav-link px-2 text-white">Login</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">|</a></li>
-                <li><a href="/films/signup/" class="nav-link px-2 text-white">Register</a></li>
+                <li><a href="/account/register/" class="nav-link px-2 text-white">Register</a></li>
               {% endif %}
             </ul>
           </div>
