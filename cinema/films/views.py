@@ -1,11 +1,5 @@
-import os.path
-
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
-from django.views.generic.edit import CreateView
+from django.urls import reverse
 from . import models
 
 
