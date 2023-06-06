@@ -6,7 +6,7 @@ class Film(models.Model):
     studio = models.CharField(max_length=50)
     time = models.TimeField()
     room_number = models.IntegerField()
-    poster = models.FileField(upload_to='films/static/films')
+    poster = models.FileField(upload_to='posters')
     poster_url = models.CharField(max_length=50)
     description = models.CharField(max_length=512)
     trailer = models.CharField(max_length=512)
