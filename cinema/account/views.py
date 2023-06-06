@@ -26,16 +26,6 @@ def user_login(request):
                 # Установка текущего времени
                 current_datetime = datetime.now(timezone.utc) + timedelta(hours=3)
 
-                print("current_datetime is ", current_datetime)
-                print("type of current_datetime is ", type(current_datetime))
-                print("def_user.time is ", def_user.time)
-                print('type of datetime(def_user.time) is ', type(def_user.time))
-
-                print("---------------------------")
-
-                print("current_datetime - timedelta(minutes=3) is ", current_datetime - timedelta(minutes=3))
-                print("def_user.time is ", current_datetime - def_user.time)
-
                 # Сравнение текущего времени и последней попытка
                 if (current_datetime - def_user.time > timedelta(minutes=3)):
                     def_user.count = 0
