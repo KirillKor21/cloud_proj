@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5pe8iw^_5x90)xbrwwyh(oqpcyu&nx!zm8!tq#_%4+d)-+l1+5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'cinema.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cinema',
+        'NAME': 'rc1a-kaopecn5rluko3b5.mdb.yandexcloud.net,rc1b-krbo79isqdimfx22.mdb.yandexcloud.net,rc1c-x369j4viy2o7xoh3.mdb.yandexcloud.net',
         'USER': 'kirill',
         'PASSWORD': 'qwe123rty',
         'HOST': '192.168.31.10',
@@ -122,11 +122,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = f'{BASE_DIR}/films/static'
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static"),
-]
 
 MEDIA_ROOT = f'{BASE_DIR}/media'
 MEDIA_URL = '/media/'
