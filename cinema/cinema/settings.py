@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'cinema.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rc1a-kaopecn5rluko3b5.mdb.yandexcloud.net,rc1b-krbo79isqdimfx22.mdb.yandexcloud.net,rc1c-x369j4viy2o7xoh3.mdb.yandexcloud.net',
+        'NAME': 'cinema',
         'USER': 'kirill',
         'PASSWORD': 'qwe123rty',
-        'HOST': '192.168.31.10',
+        'HOST': 'rc1a-kaopecn5rluko3b5.mdb.yandexcloud.net,rc1b-krbo79isqdimfx22.mdb.yandexcloud.net,rc1c-x369j4viy2o7xoh3.mdb.yandexcloud.net',
         'PORT': '5432',
     }
 }
