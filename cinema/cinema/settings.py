@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'kirill',
         'PASSWORD': 'qwe123rty',
         'HOST': 'rc1a-kaopecn5rluko3b5.mdb.yandexcloud.net,rc1b-krbo79isqdimfx22.mdb.yandexcloud.net,rc1c-x369j4viy2o7xoh3.mdb.yandexcloud.net',
-        'PORT': '5432',
+        'PORT': '6432',
     }
 }
 
