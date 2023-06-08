@@ -29,18 +29,6 @@ def films_view(request):
                 print("Can't find it")
                 
     all_films = models.Film.objects.all()
-    for Film in all_films:
-        print('Poster is ', Film.poster)
-        name_file = str(Film.poster)
-        url = 'https://storage.yandexcloud.net/my-backet-kku201-331/' + name_file
-        print('url is ', url)
-
-        req = requests.get(url)
-        path = '/home/kku201-331/cloud_proj/cinema/media/posters/'
-        file = open(path + name_file, "wb")
-        file.write(req.content)
-        file.close()
-    
     print(all_films)
     context = {'all_films': all_films}
     return render(request, 'films/films_view.html', context=context)
@@ -101,16 +89,6 @@ def add(request):
         
         th_film.save()
         
-        path = '/home/kku201-331/cloud_proj/cinema/media/posters/'
-        name_file = str(poster)
-        url = 'https://storage.yandexcloud.net/my-backet-kku201-331/' + name_file
-        print('url is ', url)
-        file = open(path + name_file, 'rb')
-
-        req = requests.put(url, file)
-
-        file.close()
-        print('Mes of file upload is ', req.text)
         
         
         return redirect(reverse('films:list'))
